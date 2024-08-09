@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "PC Portable Dell G15",
+    "category": "Ordinateurs",
+    "description": "Le PC portable gaming Dell G15 possède de sérieux arguments"
+  },
+  {
+    "id": 2,
+    "name": "Imprimantes Epson",
+    "category": "Imprimantes Epson",
+    "description": "L'Epson Expression Home XP-2150 est une imprimante multifonction sans fil conçue pour une utilisation domestique et de petite entreprise"
+  }
+]
