@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private url:string= "assets/product.json"
+  private productData:string= "assets/product.json"
 productList:product[]=[];
 newProduct:product
 
   constructor(private http:HttpClient) { }
 //reading and retrieving the products from json file using httpCLient
 getProducts(){
-  return this.http.get(this.url).subscribe((response)=>{
+  return this.http.get(this.productData).subscribe((response)=>{
       this.productList = (response as any[]).map(product => ({
         id: product.id,
         name: product.name,
