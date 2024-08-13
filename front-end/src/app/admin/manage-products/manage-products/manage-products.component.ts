@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { product } from '../../../core/models/product';
 import { ProductService } from '../../../core/services/product.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-manage-products',
@@ -13,7 +14,7 @@ import { ProductService } from '../../../core/services/product.service';
 export class ManageProductsComponent {
   //Creating a reactive formu;ar without initializing it
 productForm!:FormGroup
-//inject aform builder and product service
+//inject a form builder and product service
 constructor(private fb:FormBuilder,private productService: ProductService){
   this.productForm=this.fb.group({
     id:new FormControl(["",Validators.required]),
@@ -23,13 +24,12 @@ constructor(private fb:FormBuilder,private productService: ProductService){
   })
 
 }
-
+//add new product on formSubmit
 onSubmit() {
   if (this.productForm.valid) {
-    const product=this.productForm.value
-    console.log(this.productForm.value);
-    this.productService.addProduct(product);
-    console.log('New product added:', product);
+    const products=this.productForm.value
+    this.productService.addProduct(products);
+    console.log('New product added:', products);
     this.productForm.reset();
   }
 }
@@ -44,6 +44,5 @@ updateProduct(product: product): void {
   this.productForm.reset();
 
 }
-
 
 }
