@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../../core/services/product.service';
 import { product } from '../../../core/models/product';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-product-filters',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './product-filters.component.html',
   styleUrl: './product-filters.component.scss'
 })

@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { product } from '../../../core/models/product';
 import { ProductService } from '../../../core/services/product.service';
 import { Subject } from 'rxjs';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-manage-products',
   standalone: true,
-  imports: [],
+  imports: [NgIf,FormsModule,ReactiveFormsModule],
   templateUrl: './manage-products.component.html',
   styleUrl: './manage-products.component.scss'
 })
@@ -41,7 +42,6 @@ updateProduct(product: product): void {
     category: product.category,
     description: product.description,
   });
-  this.productForm.reset();
 
 }
 

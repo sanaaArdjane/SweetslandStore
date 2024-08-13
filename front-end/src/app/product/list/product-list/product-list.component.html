@@ -1,4 +1,4 @@
-<ul >
+<ul *ngIf="products.length === 0">No products available
   <li *ngFor="let product of products">
     {{ product.name }} - {{ product.description }}
   </li>
