@@ -1,0 +1,20 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="id">ID</label>
+    <input id="id" formControlName="id">
+    <div *ngIf="id?.errors?.['pattern']">ID must be a number.</div>
+  </div>
+  <div>
+    <label for="name">Name</label>
+    <input id="name" formControlName="name">
+  </div>
+  <div>
+    <label for="category">Category</label>
+    <input id="category" formControlName="category">
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+  <button type="submit">Add Product</button>
+</form>

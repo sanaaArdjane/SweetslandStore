@@ -1,5 +1,6 @@
 <ul *ngIf="products.length === 0">No products available
   <li *ngFor="let product of products">
-    {{ product.name }} - {{ product.description }}
+    {{ product.name }}  {{ product.description }}
+    <a [routerLink]="['/product', product.id]">View Details</a>
   </li>
 </ul>

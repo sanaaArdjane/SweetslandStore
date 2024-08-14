@@ -11,12 +11,12 @@ import { NgFor } from '@angular/common';
   styleUrl: './product-filters.component.scss'
 })
 export class ProductFiltersComponent {
-  products: product[] = [];
+  filteredProducts: product[] = [];
   Category: string = '';
   constructor(private productService:ProductService){}
   filterByCategory(category: string){
     this.Category = category;
-    return this.productService.filterProduct(category);
+    this.filteredProducts=this.productService.filterProduct(category);
 
   }
 }

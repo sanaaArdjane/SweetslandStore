@@ -18,13 +18,17 @@ productForm!:FormGroup
 //inject a form builder and product service
 constructor(private fb:FormBuilder,private productService: ProductService){
   this.productForm=this.fb.group({
-    id:new FormControl(["",Validators.required]),
+    id:new FormControl(["",Validators.required,Validators.pattern('^[0-9]+$')]),
     name:new FormControl(["",Validators.required]),
     category:new FormControl(["",Validators.required]),
     description:new FormControl(["",Validators.required]),
   })
 
 }
+get id() {
+  return this.productForm.get('id');
+}
+
 //add new product on formSubmit
 onSubmit() {
   if (this.productForm.valid) {

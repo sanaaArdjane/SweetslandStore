@@ -5,6 +5,7 @@ import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
+
 })
 export class ProductService {
   private productData:string= "assets/product.json"
