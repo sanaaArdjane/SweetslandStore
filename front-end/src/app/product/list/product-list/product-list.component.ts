@@ -15,6 +15,9 @@ export class ProductListComponent {
   products: product[] = [];
   //inject the productService
 constructor(private productService:ProductService){}
+ngOnInit() {
+  this.displayProductList();
+}
    // Display the product list
    displayProductList() {
     this.productService.getProducts().subscribe({

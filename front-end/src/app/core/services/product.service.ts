@@ -8,7 +8,7 @@ import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 
 })
 export class ProductService {
-  private productData:string= "assets/product.json"
+  private productData:string= "assets/products.json"
   private productList:product[]=[];
   newProduct:product
 
@@ -38,7 +38,7 @@ getProducts(): Observable<product[]> {
     this.productList = this.productList.filter(product => product.id !== id);
     this.productListSubject.next(this.productList);
   }
-  //filter a list of products par categories
+  //filter a list of products by categories
   filterProduct(category:string):product[]{
     return this.productList.filter(product => product.category == category);
   }
