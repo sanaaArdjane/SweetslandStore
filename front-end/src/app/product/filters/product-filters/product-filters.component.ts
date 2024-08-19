@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ProductService } from '../../../core/services/product.service';
 import { product } from '../../../core/models/product';
 import { NgFor } from '@angular/common';
@@ -11,12 +11,15 @@ import { NgFor } from '@angular/common';
   styleUrl: './product-filters.component.scss'
 })
 export class ProductFiltersComponent {
-  filteredProducts: product[] = [];
+  @Output() productsFiltered = new EventEmitter<product[]>();
   Category: string = '';
+  filteredProducts: product[] = [];
   constructor(private productService:ProductService){}
-  filterByCategory(category: string){
-    this.Category = category;
-    this.filteredProducts=this.productService.filterProduct(category);
+  filterByCategory(category:Event){
+    const target = event.target as HTMLSelectElement;
+    this.Category = target.value;
+    const filteredProducts=this.productService.filterProduct(this.Category);
+    this.productsFiltered.emit(filteredProducts);
 
   }
 }

@@ -1,6 +1,7 @@
 <ng-template #noProducts>
   <div>No products available</div>
 </ng-template>
+<app-product-filters  (productsFiltered)="onProductsFiltered($event)"></app-product-filters>
 
 <ul *ngIf="products.length > 0; else noProducts">
   <li *ngFor="let product of products">

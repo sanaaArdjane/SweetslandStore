@@ -4,11 +4,12 @@ import { product } from '../../../core/models/product';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { ProductFiltersComponent } from "../../filters/product-filters/product-filters.component";
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [NgIf,NgFor,RouterLink,RouterModule],
+  imports: [NgIf, NgFor, RouterLink, RouterModule, ProductFiltersComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
@@ -28,22 +29,9 @@ ngOnInit() {
       }
     });
   }
-///////////////////////////
-//addProducts
-removeProductsList(){
-this.productService.getProducts().subscribe({
-  next:(products)=>{
-    console.log('products removed:',products);
-    this.products=products;
+   // Handle filtered products emitted from the filter component
+   onProductsFiltered(filteredProducts: product[]) {
+    this.products = filteredProducts;
   }
-})
+
 }
-//adding properties to list 
-removeList(){
-  this.productService.getProducts().subscribe({
-    next:(products)=>{
-      console.log('products refreshed:',products);
-      this.products=products
-    }
-  })
-}}

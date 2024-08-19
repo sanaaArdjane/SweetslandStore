@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { ProductListComponent } from "./product/list/product-list/product-list.component";
 import { NavbarComponent } from "./shared/components/navbar/navbar.component";
 
@@ -13,12 +13,4 @@ import { NavbarComponent } from "./shared/components/navbar/navbar.component";
 })
 export class AppComponent {
   title = 'front-end';
-  constructor(private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        console.log('Navigated to:', event.urlAfterRedirects);
-      }
-    });
-  }
-
 }

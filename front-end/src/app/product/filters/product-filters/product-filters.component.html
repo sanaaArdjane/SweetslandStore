@@ -1,6 +1,6 @@
 <div>
   Filter by Category:
-  <select id="category" >
+  <select id="category" (change)="filterByCategory($event)">
     <option value="">Select a category</option>
     <option value="Ordinateurs">Computers</option>
     <option value="Imprimantes Epson">Printers</option>

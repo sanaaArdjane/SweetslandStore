@@ -19,6 +19,7 @@ productList$ = this.productListSubject.asObservable();
 
 getProducts(): Observable<product[]> {
   return this.http.get<product[]>(this.productData).pipe(
+    tap((products) => this.productList = products),
     map(response => response.map(product => ({
       id: product.id,
       name: product.name,
