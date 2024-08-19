@@ -1,6 +1,11 @@
-<ul *ngIf="products.length === 0">No products available
+<ng-template #noProducts>
+  <div>No products available</div>
+</ng-template>
+
+<ul *ngIf="products.length > 0; else noProducts">
   <li *ngFor="let product of products">
     {{ product.name }}  {{ product.description }}
     <a [routerLink]="['/product', product.id]">View Details</a>
+
   </li>
 </ul>

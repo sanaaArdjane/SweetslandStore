@@ -5,7 +5,7 @@ import { ProductDetailComponent } from './product/detail/product-detail/product-
 import { authGuardGuard } from './core/guards/auth-guard.guard';
  // Example component
 
-const routes: Routes = [
+export const routes: Routes = [
 
 {path:"", component:ProductListComponent},
 {path:"product-filters", component:ProductFiltersComponent},
