@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 
 @Injectable({
@@ -8,19 +9,16 @@ import { CanActivate, Router } from '@angular/router';
 // defining canActivate route nto ensure that only authenticated users can see the details of a product
 export class authGuardGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): boolean  {
-    //  authentication check using localStorage
-    const isAuthenticated = !!localStorage.getItem('auth');
-
-    if (!isAuthenticated) {
-      // go back to login if not authenticated
+  canActivate(): boolean {
+    if (this.authService.isAuthenticated()) {
+      return true;
+    } else {
       this.router.navigate(['/login']);
       return false;
     }
-    return true;
   }
- 
- 
+
+
 }
