@@ -43,5 +43,15 @@ getProducts(): Observable<product[]> {
   filterProduct(category:string):product[]{
     return this.productList.filter(product => product.category == category);
   }
+  // Search products by keyword
+  searchProducts(keyword: string): product[] {
+    if (!keyword.trim()) {
+      return [];
+    }
+    return this.productList.filter(product =>
+      product.name.toLowerCase().includes(keyword.toLowerCase()) ||
+      product.description.toLowerCase().includes(keyword.toLowerCase())
+    );
+  }
 
 }

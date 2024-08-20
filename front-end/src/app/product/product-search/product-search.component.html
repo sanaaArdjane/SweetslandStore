@@ -1,0 +1,34 @@
+<div>
+  <h2>Search Products</h2>
+  <form #searchForm="ngForm" (ngSubmit)="searchProducts(searchForm)">
+    <div>
+      <label for="keyword">Keyword:</label>
+      <input
+        type="text"
+        id="keyword"
+        name="keyword"
+        ngModel
+        #keyword="ngModel"
+        required
+        minlength="2"
+      />
+      <div *ngIf="keyword.invalid && (keyword.dirty || keyword.touched)" class="error">
+        <div *ngIf="keyword.errors?.['required']">Keyword is required.</div>
+        <div *ngIf="keyword.errors?.['minlength']">Keyword must be at least 2 characters long.</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="searchForm.invalid">Search</button>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+
+  <div *ngIf="filteredProducts.length > 0">
+    <ul>
+      <li *ngFor="let product of filteredProducts">
+        {{ product.name }} - {{ product.description }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="filteredProducts.length === 0 && !errorMessage">
+    No products found.
+  </div>
+</div>
