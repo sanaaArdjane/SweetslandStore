@@ -5,32 +5,46 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  // storing authentication status
 
+// Storing authentication status
   private authKey = 'auth';
-  constructor(private router: Router) {}
+  private usersK="users"
+  constructor(private router: Router) {
+  }
 
-  // Log in user
+// Log in user
   login(username: string, password: string): boolean {
+    //getting and transformin gthe users in localStorage to an array
+    const users=JSON.parse(localStorage.getItem(this.usersK)|| '[]');
 
-    if (username === 'user' && password === 'password') {
+    //checking if the user is found in localStorage
+    const user = users.find((user) => user.username === username && user.password === password);
+
+    // if (users.username === 'username' && user.password === 'password') {
+    if(user){
       localStorage.setItem(this.authKey, 'true');
       return true;
     }
     return false;
   }
-
-  // Register new user
+// Register new user
   register(username: string, password: string): boolean {
-    return true;
-  }
+     //getting and transformin gthe users in localStorage to an array
+     const users=JSON.parse(localStorage.getItem(this.usersK)|| '[]');
 
-  // Check if user is authenticated
+     //checking if user exists if not push it to localStorage
+     const userExist=users.some((user)=>username===username)
+     if(!userExist){
+      users.push({username,password});
+      localStorage.setItem(this.usersK,JSON.stringify(users))
+
+    return true;
+  }return false;}
+// Check if user is authenticated
   isAuthenticated(): boolean {
     return !!localStorage.getItem(this.authKey);
   }
-
-  // Log out user
+// Log out user
   logout(): void {
     localStorage.removeItem(this.authKey);
     this.router.navigate(['/login']);

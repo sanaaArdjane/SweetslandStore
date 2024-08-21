@@ -4,6 +4,7 @@ import { ProductService } from '../../../core/services/product.service';
 import { product } from '../../../core/models/product';
 import { RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,13 +14,20 @@ import { NgIf } from '@angular/common';
   styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent {
-  product:product| undefined;
+  product
   constructor( private route: ActivatedRoute, private productService: ProductService
   ) {}
 ngOnInit(){
   const id = +this.route.snapshot.paramMap.get('id')!;
-  this.product = this.productService.filterProduct('').find(product => product.id === id);
+  // console.log('Product Id:', id);
+  this.product = this.productService.getProducts().pipe(
+    map(products => products.find(product => product.id === id))
+  ).subscribe({
+    next: (product) => this.product = product,
+    error: (err) => console.error('error fetching product detail:', err)
+  });
 }
+
 
 }
 //

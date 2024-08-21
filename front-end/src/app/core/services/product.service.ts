@@ -27,6 +27,7 @@ getProducts(): Observable<product[]> {
       description: product.description
     }))),
 
+
   );
 }
   //adding new product
@@ -48,10 +49,10 @@ getProducts(): Observable<product[]> {
     if (!keyword.trim()) {
       return [];
     }
+
     return this.productList.filter(product =>
       product.name.toLowerCase().includes(keyword.toLowerCase()) ||
       product.description.toLowerCase().includes(keyword.toLowerCase())
     );
   }
-
 }

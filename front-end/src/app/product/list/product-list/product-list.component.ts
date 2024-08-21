@@ -26,6 +26,7 @@ ngOnInit() {
       next: (products) => {
         console.log('Products fetched:', products);
         this.products = products;
+        console.log('Products in list:', this.products);
       }
     });
   }
