@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div *ngFor="let champ of formConfig">
+    <label [attr.for]="champ.name">{{ champ.label }}</label>
+
+    <input *ngIf="champ.type === 'text'" [formControlName]="champ.name" [type]="champ.type" [id]="champ.name"/>
+
+    <select *ngIf="champ.type === 'select'" [formControlName]="champ.name" [id]="champ.name">
+      <option *ngFor="let option of champ.options" [value]="option">{{ option }}</option>
+    </select>
+
+    <input *ngIf="champ.type === 'checkbox'" [formControlName]="champ.name" type="checkbox" [id]="champ.name"/>
+
+     <!-- Handle additional champ types similarly -->
+
+     <div *ngIf="form.get(champ['name']).invalid && form.get(champ['name']).touched">
+      <span *ngIf="form.get(champ['name']).errors['required']">{{ champ['label'] }} is required</span>
+      <span *ngIf="form.get(champ['name']).errors['minlength']">Minimum length is {{ champ['minLength'] }}</span>
+      <!-- Add more error messages as needed -->
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>

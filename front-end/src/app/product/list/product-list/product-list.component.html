@@ -2,11 +2,24 @@
   <div>No products available</div>
 </ng-template>
 <app-product-filters  (productsFiltered)="onProductsFiltered($event)"></app-product-filters>
+<div class="product-grid" *ngIf="products.length > 0; else noProducts">
+  <div *ngFor="let product of products" class="product-card">
+    <div class="product-image">
+      <img [src]="" alt="{{ product.name }}">
+      <!-- <div class="badge" *ngIf="product.badge">{{ product.badge }}</div> -->
+    </div>
+    <div class="product-info">
+      <div class="product-category">{{ product.category }}</div>
+      <h3 class="product-name">{{ product.name }}</h3>
+      <div class="product-price">
+        <!-- <span class="current-price">${{ product.currentPrice }}</span>
+        <span class="old-price" *ngIf="product.oldPrice">${{ product.oldPrice }}</span> -->
+      </div>
 
-<ul *ngIf="products.length > 0; else noProducts">
-  <li *ngFor="let product of products">
-    {{ product.name }}
-    <a [routerLink]="['/product', product.id]">View Details</a>
-
-  </li>
-</ul>
+      <div class="product-actions">
+        <a [routerLink]="['/product', product.id]" class="view-details">View Details</a>
+        <!-- Add any additional buttons or icons here -->
+      </div>
+    </div>
+  </div>
+</div>
