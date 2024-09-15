@@ -1,0 +1,14 @@
+<div>
+  <input type="file" (change)="onFileSelect($event)" >
+  <ul>
+    <li *ngFor="let file of files">
+      {{ file.name }}
+      <button (click)="removeFile(file)">Delete</button>
+       <!-- Previsualisation pour les images -->
+       <img *ngIf="FileImage(file)" [src]="fileUrl(file)" >
+
+       <!-- Previsualisation pour les PDFs -->
+       <iframe *ngIf="FilePDF(file)" [src]="fileUrl(file)" width="100" height="100"></iframe>
+    </li>
+  </ul>
+</div>
